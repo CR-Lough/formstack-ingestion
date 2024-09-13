@@ -1,5 +1,5 @@
-version: 3
-version_hash: UAdQXqCXrGxObrzS79ByJ2ISgB6dR/QIigKe872KKns=
+version: 5
+version_hash: sXjtNMzo+BWbqxhqVW64BIpE+nrZuwpMar/f5Xk1SCo=
 engine_version: 9
 name: scc_formstack
 tables:
@@ -160,7 +160,43 @@ tables:
       data:
         data_type: complex
         nullable: false
-    write_disposition: append
+      id:
+        data_type: text
+        nullable: true
+      timestamp:
+        data_type: timestamp
+        nullable: true
+      user_agent:
+        data_type: text
+        nullable: true
+      remote_addr:
+        data_type: text
+        nullable: true
+      payment_status:
+        data_type: text
+        nullable: true
+      latitude:
+        data_type: text
+        nullable: true
+      longitude:
+        data_type: text
+        nullable: true
+      read:
+        data_type: text
+        nullable: true
+      form_id:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+    write_disposition: replace
+    x-normalizer:
+      seen-data: true
   _dlt_pipeline_state:
     columns:
       version:
@@ -213,6 +249,8 @@ normalizers:
   json:
     module: dlt.common.normalizers.json.relational
 previous_hashes:
+- Qu3XYRvXM0du54uT0/C3auTA+JHN9hz+mi9rt4gHmoI=
+- UAdQXqCXrGxObrzS79ByJ2ISgB6dR/QIigKe872KKns=
 - NQuteq6PZjIFM9TM3eCc75lN+fxPu8jSssYy3BNoLq4=
 - 0sNi5XjKBbIz0R4dGYYjVA3i5OSMMm2tzi/PGqyzncM=
 - Ag9hegFLN2iV0aJJCDQxP6bJ2YAyGvXW5UCp0MYBdvs=

@@ -49,17 +49,21 @@ def submissions(forms_list, api_secret_key=dlt.secrets.value):
         ),
         data_selector="submissions",
     )
-    
     for form_id in forms_list:
         print(f"Processing form_id: {form_id}...")
         for page in other_formstack_client.paginate(
             f"/form/{form_id}/submission.json?per_page=100&data=true",
         ):
-            for submission in page["submissions"]:
+            for submission in page:
                 # Transform the 'data' field in each submission
                 if "data" in submission:
                     submission["data"] = transform_data_field(submission["data"])
-                yield submission
+                    for field_data in submission["data"]:
+                        flattened_submission = submission.copy()
+                        flattened_submission["data"] = field_data
+                        flattened_submission["form_id"] = form_id
+                        
+                        yield flattened_submission
 
 pipeline = dlt.pipeline(
     pipeline_name='scc_formstack',
@@ -82,3 +86,28 @@ forms_list = run_duckdb_query(query)
 # submissions data
 submissions_info = pipeline.run(submissions(forms_list))
 print(submissions_info)
+
+query = """
+CREATE TABLE scc_formstack_data.form_submissions AS
+    with submission_responses as (
+        select
+            form_id as form_id,
+            id as sub_id,
+            timestamp as sub_timestamp,
+            latitude as sub_latitude,
+            longitude as sub_longitude,
+            data.field_id as field_id,
+            data.label as label,
+            data.value as value,
+            data.type as type
+        from scc_formstack_data.submissions
+    )
+    select
+        forms.name as form_name,
+        submission_responses.*
+    from forms
+    inner join submission_responses
+        on forms.id = submission_responses.form_id
+;
+"""
+form_submissions = run_duckdb_query(query)
