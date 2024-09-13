@@ -105,7 +105,7 @@ CREATE TABLE scc_formstack_data.form_submissions AS
     select
         forms.name as form_name,
         submission_responses.*
-    from forms
+    from scc_formstack_data.forms
     inner join submission_responses
         on forms.id = submission_responses.form_id
 ;
