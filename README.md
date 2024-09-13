@@ -1,5 +1,3 @@
-Here is the `README.md` without code snippets formatted in markdown:
-
 # Formstack Data Pipeline
 
 This project sets up a data pipeline using [dlt](https://dlthub.com/) to pull form and submission data from Formstack's API, process it, and load it into a DuckDB database. The pipeline handles transforming and flattening the submission data so that each form field in the submission data is represented as a row in the DuckDB table.
