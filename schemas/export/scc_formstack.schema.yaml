@@ -1,0 +1,218 @@
+version: 3
+version_hash: UAdQXqCXrGxObrzS79ByJ2ISgB6dR/QIigKe872KKns=
+engine_version: 9
+name: scc_formstack
+tables:
+  _dlt_version:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+      engine_version:
+        data_type: bigint
+        nullable: false
+      inserted_at:
+        data_type: timestamp
+        nullable: false
+      schema_name:
+        data_type: text
+        nullable: false
+      version_hash:
+        data_type: text
+        nullable: false
+      schema:
+        data_type: text
+        nullable: false
+    write_disposition: skip
+    description: Created by DLT. Tracks schema updates
+  _dlt_loads:
+    columns:
+      load_id:
+        data_type: text
+        nullable: false
+      schema_name:
+        data_type: text
+        nullable: true
+      status:
+        data_type: bigint
+        nullable: false
+      inserted_at:
+        data_type: timestamp
+        nullable: false
+      schema_version_hash:
+        data_type: text
+        nullable: true
+    write_disposition: skip
+    description: Created by DLT. Tracks completed loads
+  forms:
+    columns:
+      id:
+        data_type: text
+        nullable: true
+      created:
+        data_type: timestamp
+        nullable: true
+      db:
+        data_type: text
+        nullable: true
+      deleted:
+        data_type: text
+        nullable: true
+      folder:
+        data_type: text
+        nullable: true
+      name:
+        data_type: text
+        nullable: true
+      num_columns:
+        data_type: text
+        nullable: true
+      progress_meter:
+        data_type: text
+        nullable: true
+      submissions:
+        data_type: text
+        nullable: true
+      submissions_unread:
+        data_type: text
+        nullable: true
+      updated:
+        data_type: timestamp
+        nullable: true
+      viewkey:
+        data_type: text
+        nullable: true
+      views:
+        data_type: text
+        nullable: true
+      version:
+        data_type: text
+        nullable: true
+      language:
+        data_type: text
+        nullable: true
+      submissions_today:
+        data_type: bigint
+        nullable: true
+      last_submission_id:
+        data_type: text
+        nullable: true
+      last_submission_time:
+        data_type: timestamp
+        nullable: true
+      url:
+        data_type: text
+        nullable: true
+      encrypted:
+        data_type: bool
+        nullable: true
+      inactive:
+        data_type: bool
+        nullable: true
+      timezone:
+        data_type: text
+        nullable: true
+      should_display_one_question_at_a_time:
+        data_type: bool
+        nullable: true
+      can_access_1q_feature:
+        data_type: bool
+        nullable: true
+      is_workflow_form:
+        data_type: bool
+        nullable: true
+      is_workflow_published:
+        data_type: bool
+        nullable: true
+      has_approvers:
+        data_type: bool
+        nullable: true
+      edit_url:
+        data_type: text
+        nullable: true
+      data_url:
+        data_type: text
+        nullable: true
+      summary_url:
+        data_type: text
+        nullable: true
+      permissions:
+        data_type: bigint
+        nullable: true
+      can_edit:
+        data_type: bool
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+      submit_button_title:
+        data_type: text
+        nullable: true
+    write_disposition: replace
+    x-normalizer:
+      seen-data: true
+  submissions:
+    columns:
+      data:
+        data_type: complex
+        nullable: false
+    write_disposition: append
+  _dlt_pipeline_state:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+      engine_version:
+        data_type: bigint
+        nullable: false
+      pipeline_name:
+        data_type: text
+        nullable: false
+      state:
+        data_type: text
+        nullable: false
+      created_at:
+        data_type: timestamp
+        nullable: false
+      version_hash:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+    write_disposition: append
+    file_format: preferred
+    x-normalizer:
+      seen-data: true
+settings:
+  detections:
+  - iso_timestamp
+  default_hints:
+    not_null:
+    - _dlt_id
+    - _dlt_root_id
+    - _dlt_parent_id
+    - _dlt_list_idx
+    - _dlt_load_id
+    foreign_key:
+    - _dlt_parent_id
+    root_key:
+    - _dlt_root_id
+    unique:
+    - _dlt_id
+normalizers:
+  names: snake_case
+  json:
+    module: dlt.common.normalizers.json.relational
+previous_hashes:
+- NQuteq6PZjIFM9TM3eCc75lN+fxPu8jSssYy3BNoLq4=
+- 0sNi5XjKBbIz0R4dGYYjVA3i5OSMMm2tzi/PGqyzncM=
+- Ag9hegFLN2iV0aJJCDQxP6bJ2YAyGvXW5UCp0MYBdvs=

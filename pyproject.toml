@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "scc-formstack"
+version = "0.1.0"
+description = "formstack info"
+authors = ["Connor <flocka_birdz@pm.me>"]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+dlt = ">=0.5,<1.0"
+duckdb = ">=0.8,<2.0"
+python-dotenv = "^0.20.0"
+dbt-duckdb = ">=1.6,<2.0"
+s3fs = "^2023.6.0"
+dagster = ">=1.4,<2.0"
+dagster-webserver = ">=1.4,<2.0"
+dagster-embedded-elt = ">=0.24,<1.0"
+dbt-osmosis = "^0.12.4"
+dagster-dbt = ">=0.21,<1.0"
+numpy = ">=1.26,<2.0"
+psutil = "^6.0.0"
+
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+gen-staging = "scripts.staging:main"
+
+[tool.dagster]
+module_name = "orchestration"
+
+[build-system]
+requires = ["poetry-core>=1.6.0"]
+build-backend = "poetry.core.masonry.api"
