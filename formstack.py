@@ -96,7 +96,7 @@ CREATE TABLE scc_formstack_data.form_submissions AS
             timestamp as sub_timestamp,
             latitude as sub_latitude,
             longitude as sub_longitude,
-            data.field_id as field_id,
+            data.field as field_id,
             data.label as label,
             data.value as value,
             data.type as type
